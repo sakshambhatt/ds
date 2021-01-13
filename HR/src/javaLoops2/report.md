@@ -13,3 +13,5 @@ Exception in thread "main" java.lang.NullPointerException
 	at java.util.StringTokenizer.<init>(StringTokenizer.java:236)
 	at Solution.seriesCalulator(Solution.java:42)
 	at Solution.main(Solution.java:86
+
+# Analysis:
