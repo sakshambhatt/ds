@@ -50,6 +50,8 @@ public class Main {
         int counter2 = 0;
         int currentIndex = -1;
         int i = 0;
+        
+        //logic to increase counter of 0, 1 or 2 if element is equal to 0, 1, or 2 respectively
         for(i = 0; i < a.length; i++) {
             
             if(a[i] == 0) {
@@ -60,14 +62,17 @@ public class Main {
                 counter2++;
             }
         }
-        //System.out.println(counter0 + " " + counter1 + " " + counter2) ;
+        
+        //fill array with zeroes
         for(i = 0; i < counter0; i++) {
         	a[i] = 0;
         	currentIndex = i;
         }
         
-        //System.out.println(currentIndex);
+        
         int buffer = currentIndex;
+        
+        //fill array with ones
         for(i = currentIndex + 1; i < buffer + 1 + counter1; i++) {
         	a[i] = 1;
         	currentIndex = i;
@@ -75,12 +80,12 @@ public class Main {
         
         buffer = currentIndex;
         
+        //fill array with twos
         for(i = currentIndex + 1; i < buffer + 1 + counter2; i++) {
         	a[i] = 2;
         	currentIndex = i;
         }
         
-        //System.out.println(currentIndex);
         return a;
     }
     public static void main (String[] args) {
