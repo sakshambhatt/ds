@@ -5,8 +5,7 @@
 # Algo:
 1. Traverse array 
 	1. While traversing scan -ve elements and put them in a new array, keep track of index of the new array
-2. Traver array
-	2. While traversing scan +ve elements and put them in a new array, from the index obtained from last traversal
+2. While traversing scan +ve elements and put them in a new array, from the index obtained from last traversal
 	
 # Complexity:
 1. O(n)
