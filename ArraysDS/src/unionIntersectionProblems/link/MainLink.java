@@ -49,43 +49,44 @@ public class MainLink {
 	// function which takes 2 arrays, their sizes
 	// and returns the number of elements in their union
 	public static int doUnion(int a[], int n, int b[], int m) {
-		
-		int unionArray[] = new int[n + m];
+
+		int unionCount = n + m;
 		int i = 0;
 		int j = 0;
-		//filling union array with elements of a and b
+		for (i = 0; i < a.length; i++) {
+
+			for (j = i + 1; j < a.length; j++) {
+
+				if (a[i] == a[j]) {
+					
+					a[i] = -1;
+					unionCount--;
+				}
+			}
+		}
+		for (i = 0; i < b.length; i++) {
+
+			for (j = i + 1; j < b.length; j++) {
+
+				if (b[i] == b[j]) {
+
+					b[i] = -1;
+					unionCount--;
+				}
+			}
+		}
 		for(i = 0; i < a.length; i++) {
 			
-			unionArray[j] = a[i];
-			j++;
-		}
-		for(i = 0; i < b.length; i++) {
-			
-			unionArray[j] = b[i];
-			j++;
-		}
-		int unionCount = unionArray.length;
-		//logic to replace repeating elements of unionArray with -1 and reduce the count
-		for(i = 0; i < unionArray.length; i++) {
-			
-			for(j = i + 1; j < unionArray.length; j++) {
+			for(j = 0; j < b.length; j++) {
 				
-				if(unionArray[i] != -1 && unionArray[j] != -1) {
+				if(a[i] != -1 && b[j] != -1) {
 					
-					if(unionArray[i] == unionArray[j]) {
-						
-						unionArray[i] = -1;
+					if(a[i] == b[j]) {
 						unionCount--;
 					}
 				}
 			}
 		}
-		
-//		System.out.println("union array:");
-//		for(i = 0; i < unionArray.length; i++) {
-//			
-//			System.out.print(unionArray[i] +  " ");
-//		}
 		return unionCount;
 	}
 
@@ -101,6 +102,6 @@ public class MainLink {
 		System.out.println("enter array2 (with spaces not newLine in between):");
 		int b[] = in.stringToArray(m);
 		int sizeOfUnion = doUnion(a, n, b, m);
-		System.out.println("\n"+sizeOfUnion);
+		System.out.println(sizeOfUnion);
 	}
 }
