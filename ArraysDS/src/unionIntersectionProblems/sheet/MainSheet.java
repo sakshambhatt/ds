@@ -136,21 +136,6 @@ public class MainSheet {
 		return intersection;
 	}
 
-	// function to assign smaller array to 'small' variable and larger to 'large'
-	// and to call intersection finder function
-	public static int[] smallLargeSeparatorAndIntersectionCaller(int a[], int b[]) {
-
-		if (a.length < b.length) {
-			int small[] = a;
-			int large[] = b;
-			return intersectionFinder(small, large);
-		} else {
-			int small[] = b;
-			int large[] = a;
-			return intersectionFinder(small, large);
-		}
-	}
-
 	public static void main(String[] args) {
 
 		// Input
@@ -165,9 +150,8 @@ public class MainSheet {
 		System.out.println("enter array2:");
 		int b[] = in.stringToArray(m);
 
-		// calling function which separates large and small arrays and calls
-		// intersection finder function
-		int intersectionArray[] = smallLargeSeparatorAndIntersectionCaller(a, b);
+		// calling intersection finder function
+		int intersectionArray[] = intersectionFinder(a, b);
 
 		// calling union finder function
 		int unionArray[] = unionFinder(intersectionArray, a, b);

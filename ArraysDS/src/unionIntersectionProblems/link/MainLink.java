@@ -4,6 +4,7 @@ package unionIntersectionProblems.link;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 class Input {
@@ -50,44 +51,51 @@ public class MainLink {
 	// and returns the number of elements in their union
 	public static int doUnion(int a[], int n, int b[], int m) {
 
-		int unionCount = n + m;
 		int i = 0;
 		int j = 0;
+		int[] unionArray = new int[n + m];
+		// filling elements of a in unionArray
 		for (i = 0; i < a.length; i++) {
 
-			for (j = i + 1; j < a.length; j++) {
-
-				if (a[i] == a[j]) {
-					
-					a[i] = -1;
-					unionCount--;
-				}
-			}
+			unionArray[j] = a[i];
+			j++;
 		}
+		// filling elements of b in unionArray
 		for (i = 0; i < b.length; i++) {
 
-			for (j = i + 1; j < b.length; j++) {
+			unionArray[j] = b[i];
+			j++;
+		}
 
-				if (b[i] == b[j]) {
+		// sorting array
+		Arrays.sort(unionArray);
 
-					b[i] = -1;
-					unionCount--;
-				}
+		// logic to remove repeating elements from an array starts
+		int newArray[] = new int[unionArray.length];
+
+		// logic to put unique elements from [unionArray] into newArray
+		newArray[0] = unionArray[0];
+		for (i = 1, j = 0; i < unionArray.length; i++) {
+
+			if (newArray[j] != unionArray[i]) {
+
+				j++;
+				newArray[j] = unionArray[i];
 			}
 		}
-		for(i = 0; i < a.length; i++) {
-			
-			for(j = 0; j < b.length; j++) {
-				
-				if(a[i] != -1 && b[j] != -1) {
-					
-					if(a[i] == b[j]) {
-						unionCount--;
-					}
-				}
-			}
-		}
-		return unionCount;
+		// logic to remove repeating elements from an array ends
+//		System.out.println("\nunion array");
+//		for (i = 0; i < newArray.length; i++) {
+//
+//			if(newArray[i] != -1) {
+//				
+//				System.out.print(newArray[i] + " ");
+//			}
+//		}
+//		System.out.println("\n" + (j + 1));
+		// j was counting unique elements and (j + 1) because we did newArray[0] =
+		// unionArray[0]; at line 83
+		return j + 1;
 	}
 
 	public static void main(String[] args) {
