@@ -1,5 +1,5 @@
 //Given an array, find if all elements are non-positive or non-negative
-package contiguosSubarrayMaximumSum.allPosAllNeg;
+package allPosAllNeg;
 
 import java.lang.Math;
 import java.io.BufferedReader;

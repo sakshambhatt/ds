@@ -1,6 +1,6 @@
 //Remove duplicate elements from a sorted array 
 //and return an array with unique elements
-package unionIntersectionProblems.rmvDuplicate;
+package rmvDuplicate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
