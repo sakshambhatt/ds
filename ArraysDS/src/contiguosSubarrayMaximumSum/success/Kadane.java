@@ -1,6 +1,4 @@
-//Given an array arr of N integers. Find the contiguous sub-array with maximum sum. 
-//Array may contain -ve elements
-package contiguosSubarrayMaximumSum;
+package contiguosSubarrayMaximumSum.success;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -44,39 +42,35 @@ class Input {
 		return a;
 	}
 }
-
-class Kadane {
-
-	// Function to find subarray with maximum sum
-	// arr: input array
-	// n: size of array
-	public static int maxSubarraySum(int arr[], int n) {
-
-		int i = 0;
-		int j = 0;
-		int sum = 0;
-		//numbers in array will be from -10^7 to 10^7
-		//taking the lowest possible value
-		int maxSum = -999999999;
+public class Kadane {
+	
+	public static int maxSubarraySum(int[] arr, int n) {
 		
-		//logic to calculate sum of contigous subArray
+		int i = 0;
+	
+		int greatest = -2147483648; //lowest integer value of integer in Java
+		int currSum = 0;
+		//checking if the array has all non-positive elements (MaxSum = greatest element)
+		//or if the array has all non-negative elements(MaxSum = sum of all)
+		
+		
+		//Kadane's algo in case that the array has some non-positive
+		//and some non-negative elements
+		int maxSum = -2147483648;
+		
 		for(i = 0; i < arr.length; i++) {
 			
-			sum = 0;
-			for(j = i; j < arr.length; j++) {
-				
-				sum = sum + arr[j];
-				if(sum > maxSum) {
-					
-					maxSum = sum;
-				}
+			currSum = currSum + arr[i];
+			if(maxSum < currSum) {
+				maxSum = currSum;
+			}
+			if(currSum < 0) {
+				currSum = 0;
 			}
 		}
-		//System.out.println(maxSum);
-
-		return maxSum;
+		return 0;
 	}
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Input in = new Input();
