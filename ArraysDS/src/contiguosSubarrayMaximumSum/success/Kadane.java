@@ -42,35 +42,54 @@ class Input {
 		return a;
 	}
 }
+
 public class Kadane {
-	
+
 	public static int maxSubarraySum(int[] arr, int n) {
+		//Kadane's algo works for all kinds of arrays except those
+		//which contain only non-positive elements
 		
+		//check if array has all non-positive elements(0 & +ve)
+		//if yes then return largest element of array
 		int i = 0;
-	
-		int greatest = -2147483648; //lowest integer value of integer in Java
-		int currSum = 0;
-		//checking if the array has all non-positive elements (MaxSum = greatest element)
-		//or if the array has all non-negative elements(MaxSum = sum of all)
-		
-		
-		//Kadane's algo in case that the array has some non-positive
-		//and some non-negative elements
-		int maxSum = -2147483648;
+		int max = -2147483648;
+		boolean isNonPositive = true;
 		
 		for(i = 0; i < arr.length; i++) {
 			
-			currSum = currSum + arr[i];
-			if(maxSum < currSum) {
-				maxSum = currSum;
+			if(arr[i] > 0 && isNonPositive == true) {
+				
+				isNonPositive = false;
+				break;
 			}
-			if(currSum < 0) {
-				currSum = 0;
+			if(arr[i] > max) {
+				
+				max = arr[i];
 			}
 		}
-		return 0;
+		
+		//if not, apply kadane's algo
+		if(isNonPositive == true) {
+			
+			return max;
+		} else {
+			
+			int maxSum = 0;
+			int currSum = 0;
+			
+			for(i = 0; i < arr.length; i++) {
+				
+				currSum = currSum + arr[i];
+				
+				if(currSum < 0)
+					currSum = 0;
+				if(maxSum < currSum)
+					maxSum = currSum;
+			}
+			return maxSum;
+		}
 	}
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Input in = new Input();
