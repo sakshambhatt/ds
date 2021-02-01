@@ -13,11 +13,18 @@ class Codechef
 		InputStreamReader r = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(r);
 		int numberOfInputs = 0;
+		String x = null;
 		try {
-			numberOfInputs = Integer.parseInt(br.readLine());
-		} catch (NumberFormatException | IOException e) {
+			x = br.readLine();
+		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
+		}
+		try {
+			numberOfInputs = Integer.parseInt(x);
+		} catch (NumberFormatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		int i = 0;
 		int j = 0;
@@ -26,8 +33,14 @@ class Codechef
 		for(i = 0; i < arr.length; i++) {
 			sum = 0;
 			try {
-				arr[i] = Integer.parseInt(br.readLine());
-			} catch (NumberFormatException | IOException e) {
+				x = br.readLine();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				arr[i] = Integer.parseInt(x);
+			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
