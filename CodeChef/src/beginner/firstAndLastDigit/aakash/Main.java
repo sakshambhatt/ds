@@ -3,7 +3,6 @@ package beginner.firstAndLastDigit.aakash;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /* Name of the class has to be "Main" only if the class is public. */
