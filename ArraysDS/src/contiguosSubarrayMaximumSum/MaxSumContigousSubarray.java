@@ -1,92 +1,61 @@
-//Given an array arr of N integers. Find the contiguous sub-array with maximum sum. 
-//Array may contain -ve elements
 package contiguosSubarrayMaximumSum;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+// { Driver Code Starts
+import java.io.*;
 
-class Input {
+class Main {
 
-	public String stringInput() {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+		while (t-- > 0) {
+			// size of array
+			int n = Integer.parseInt(br.readLine().trim());
+			int arr[] = new int[n];
+			String inputLine[] = br.readLine().trim().split(" ");
 
-		InputStreamReader r = new InputStreamReader(System.in);
-		BufferedReader br = new BufferedReader(r);
+			// adding elements
+			for (int i = 0; i < n; i++) {
+				arr[i] = Integer.parseInt(inputLine[i]);
+			}
 
-		String output = null;
+			Solution obj = new Solution();
 
-		try {
-			output = br.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// calling maxSubarraySum() function
+			System.out.println(obj.maxSubarraySum(arr, n));
 		}
-		return output;
-	}
-
-	public int intInput() {
-
-		int output = Integer.parseInt(stringInput());
-		return output;
-	}
-
-	public int[] stringToArray(int n) {
-
-		int a[] = new int[n];
-		StringTokenizer st = new StringTokenizer(stringInput());
-		int i = 0;
-		while (st.hasMoreTokens()) {
-
-			a[i] = Integer.parseInt(st.nextToken());
-			i++;
-		}
-		return a;
 	}
 }
 
-class MaxSumContigousSubarray {
+// } Driver Code Ends
 
-	// Function to find subarray with maximum sum
+class Solution {
+
 	// arr: input array
 	// n: size of array
-	public static int maxSubarraySum(int arr[], int n) {
+	// Function to find the sum of contiguous subarray with maximum sum.
+	long maxSubarraySum(int arr[], int n) {
 
-		int i = 0;
-		int j = 0;
-		int sum = 0;
-		int sumIndex = 0;
-		//numbers in array will be from -10^7 to 10^7
-		//taking the lowest possible value
-		int maxSum = -999999999;
-		
-		//logic to calculate sum of contigous subArray
-		for(i = 0; i < arr.length; i++) {
-			
-			sum = 0;
-			for(j = i; j < arr.length; j++) {
-				
-				sum = sum + arr[j];
-				if(sum > maxSum) {
-					
-					maxSum = sum;
-				}
+		// Your code here
+
+		long maxContiguousSubArraySum = 0;
+		long bufferSum = 0;
+		boolean areAllElementsNonPositive = true;
+		long maxNum = Long.MIN_VALUE;
+
+		for (int element : arr) {
+			maxNum = element > maxNum ? element : maxNum;
+			if (element > bufferSum + element) {
+				bufferSum = element;
+				maxContiguousSubArraySum = bufferSum > maxContiguousSubArraySum ? bufferSum : maxContiguousSubArraySum;
+			} else {
+
+				bufferSum += element;
+				maxContiguousSubArraySum = bufferSum > maxContiguousSubArraySum ? bufferSum : maxContiguousSubArraySum;
 			}
 		}
-		//System.out.println(maxSum);
 
-		return maxSum;
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Input in = new Input();
-		System.out.println("enter size of array:");
-		int n = in.intInput();
-		System.out.println("enter array with spaces not newlines:");
-		int arr[] = in.stringToArray(n);
-		int maxSumOfSubarray = maxSubarraySum(arr, n);
-		System.out.println(maxSumOfSubarray);
+		return areAllElementsNonPositive ? maxNum : maxContiguousSubArraySum;
 	}
 
 }
